@@ -1,4 +1,13 @@
-// Prevención de re-envío: Si ya la envió, lo mandamos al index
+//Verificación de seguridad inmediata
+const urlParams = new URLSearchParams(window.location.search);
+const isFromQR = urlParams.get('source') === 'nene_qr';
+
+if (!isFromQR) {
+    alert("Acceso restringido. Por favor, escanee el QR para acceder a la encuesta.");
+    window.location.replace('index.html');
+}
+
+// Prevención de re-envío
 if (sessionStorage.getItem('encuestaEnviada') === 'true') {
     window.location.replace('index.html');
 }
@@ -7,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('survey-form');
     if (!form) return;
 
-    // --- CONFIGURACIÓN DE ESTILO PARA SWEETALERT2 ---
+    // CONFIGURACIÓN DE ESTILO PREMIUM SWEETALERT2
     const neneNegro = '#0a0a0a';
     const neneOro = '#c5a059'; 
     const neneTexto = '#f1d592';
@@ -15,10 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const configuracionNene = {
         background: neneNegro,
         color: neneTexto,
-        confirmButtonColor: neneOro,
+        buttonsStyling: false,
         customClass: {
-            popup: 'border-gold-nene', // Clase para tu CSS
-            title: 'font-playfair'    // Clase para tu CSS
+            popup: 'border-gold-nene', 
+            title: 'font-playfair',
+            confirmButton: 'btn-nene-gold swal-btn-custom'
         }
     };
 
@@ -39,50 +49,57 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- Captura de elementos ---
+    // Captura de elementos y validación +16 años
     const nombre = document.getElementById('nombre');
     const apellido = document.getElementById('apellido');
     const whatsapp = document.getElementById('whatsapp');
     const nacimiento = document.getElementById('nacimiento');
-    const localidad = document.getElementById('localidad'); // Elemento Select
+    const localidad = document.getElementById('localidad');
 
-    // Restricciones de entrada
+    const fechaActual = new Date();
+    const fechaLimite = new Date(fechaActual.getFullYear() - 16, fechaActual.getMonth(), fechaActual.getDate());
+    const maxFecha = fechaLimite.toISOString().split('T')[0];
+    if (nacimiento) nacimiento.setAttribute('max', maxFecha);
+
+    // Filtros de entrada
     if (nombre) nombre.oninput = (e) => e.target.value = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '').substring(0, 20);
     if (apellido) apellido.oninput = (e) => e.target.value = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '').substring(0, 20);
     if (whatsapp) whatsapp.oninput = (e) => e.target.value = e.target.value.replace(/\D/g, '').substring(0, 13);
 
-    // --- Manejo del Envío ---
+    // Generador de Token
+    const generarToken = () => {
+        const timeFactor = Math.floor(Date.now() / (1000 * 60 * 5));
+        return btoa("nene_secure_" + timeFactor);
+    };
+
+    // Envío del formulario
     form.addEventListener('submit', async (e) => {
         e.preventDefault(); 
 
-        // 1. Validación de campos obligatorios
-        if (!nombre.value.trim()) return manejarError(nombre, "Por favor, ingresa tu nombre.");
-        if (!apellido.value.trim()) return manejarError(apellido, "Por favor, ingresa tu apellido.");
-        if (!nacimiento.value) return manejarError(nacimiento, "Selecciona tu fecha de nacimiento.");
-        if (whatsapp.value.length < 10) return manejarError(whatsapp, "El WhatsApp debe tener al menos 10 dígitos.");
-        if (!localidad.value || localidad.value === "") {
-            return manejarError(localidad, "Por favor, selecciona tu localidad.");
+        if (!new URLSearchParams(window.location.search).get('source')) {
+            return manejarError(null, "Acceso no autorizado.");
         }
 
-        // 2. Validación de Estrellas
+        if (!nombre.value.trim() || !apellido.value.trim()) return manejarError(nombre, "Ingresá nombre y apellido.");
+        if (!nacimiento.value || new Date(nacimiento.value) > fechaLimite) return manejarError(nacimiento, "Debes ser mayor de 16 años.");
+        if (whatsapp.value.length < 10) return manejarError(whatsapp, "WhatsApp inválido.");
+        if (!localidad.value) return manejarError(localidad, "Seleccioná tu localidad.");
+
         const categorias = ['platos', 'atencion', 'ambiente', 'invitar'];
         let faltanEstrellas = false;
         categorias.forEach(cat => {
             if (!document.querySelector(`input[name="${cat}"]:checked`)) faltanEstrellas = true;
         });
+        if (faltanEstrellas) return manejarError(null, "Calificá todas las categorías.");
 
-        if (faltanEstrellas) {
-            return manejarError(null, "Por favor, califica todas las categorías con estrellas.");
-        }
-
-        // 3. Preparación del objeto final
         const datos = {
+            token: generarToken(),
             fecha: new Date().toLocaleString('es-AR'),
             nombre: nombre.value.trim(),
             apellido: apellido.value.trim(),
             nacimiento: nacimiento.value,
             whatsapp: whatsapp.value,
-            localidad: localidad.value, // <--- AHORA SÍ SE ENVÍA
+            localidad: localidad.value,
             platos: document.querySelector('input[name="platos"]:checked').value,
             atencion: document.querySelector('input[name="atencion"]:checked').value,
             ambiente: document.querySelector('input[name="ambiente"]:checked').value,
@@ -90,11 +107,10 @@ document.addEventListener('DOMContentLoaded', () => {
             comentario: document.getElementById('critica')?.value.trim() || "Sin observaciones"
         };
 
-        // Alerta de carga
         Swal.fire({
             ...configuracionNene,
-            title: 'Enviando...',
-            text: 'Guardando tu opinión en nuestras brasas.',
+            title: 'Verificando...',
+            text: 'Guardando tu opinión.',
             allowOutsideClick: false,
             showConfirmButton: false,
             didOpen: () => { Swal.showLoading(); }
@@ -117,9 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 icon: 'success',
                 iconColor: neneOro,
                 title: '¡Muchas gracias!',
-                text: 'Redirigiendo al inicio...',
                 timer: 2500, 
-                timerProgressBar: true,
                 showConfirmButton: false
             }).then(() => {
                 sessionStorage.setItem('encuestaEnviada', 'true');
@@ -127,16 +141,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
         } catch (err) {
-            Swal.fire({ 
-                ...configuracionNene,
-                icon: 'error', 
-                title: 'Error', 
-                text: 'No pudimos conectar con el servidor.' 
-            });
+            Swal.fire({ ...configuracionNene, icon: 'error', title: 'Error', text: 'No se pudo enviar.' });
         }
     });
 
-    // Limpiar errores visuales
     document.querySelectorAll('.feedback-input, #localidad').forEach(input => {
         input.addEventListener('input', () => input.classList.remove('input-error'));
         input.addEventListener('change', () => input.classList.remove('input-error'));
