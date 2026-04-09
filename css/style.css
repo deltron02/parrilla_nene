@@ -136,7 +136,7 @@ body {
     font-size: 1.1rem;
 }
 
-/* ====================ESTILOS DE BOTON DORADO EN PÁGINA DE BIENVENIDA Y ENCUESTA ================*/
+/* ==================== ESTILOS DE BOTON DORADO EN PÁGINA DE BIENVENIDA Y ENCUESTA ================*/
 .btn-nene-gold {
     background: var(--gold-gradient);
     color: #000 !important;
@@ -171,9 +171,9 @@ body {
 footer {
     background-color: #000;
     padding: 10px 0;
+    padding-bottom: 0;
     border-top: 1px var(--nene-gold) solid;
     margin-top: auto;
-    margin-bottom: 0px;
 }
 
 .footer-title {
