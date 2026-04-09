@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parrilla Nené - Encuesta de Satisfacción</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-nene sticky-top">
+        <div class="container d-flex align-items-center">
+            <a class="navbar-brand logo-wrapper" href="index.html">
+                <img src="img/logo_nene.png" alt="Logo Parrilla Nené" class="logo-img">
+                <span class="logo-subtitle">Parrilla</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link nav-link-nene" href="carta.html">Nuestra Carta</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-nene" href="info.html">Ubicación y Horarios</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-nene" href="nosotros.html">Nosotros</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container flex-grow-1 py-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <div class="card-nene">
+                    <h2 class="footer-title text-center mb-5" style="font-size: 1.5rem;">Encuesta: La Experiencia en su Mesa</h2>
+                    <p class="text-center mb-5" style="font-style: italic; color: #888; font-size: 1.1rem; font-family: 'Poppins', sans-serif;">
+                        "Su paladar tiene la palabra. Ayúdenos a perfeccionar el arte de nuestras brasas."
+                    </p>
+
+                    <form id="survey-form" novalidate>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6 mb-3">
+                                <label class="logo-subtitle mb-2 d-block" style="text-align: left; -webkit-text-fill-color: var(--nene-gold);">Nombre</label>
+                                <input type="text" id="nombre" name="nombre" class="form-control feedback-input" placeholder="Ej: Juan" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="logo-subtitle mb-2 d-block" style="text-align: left; -webkit-text-fill-color: var(--nene-gold);">Apellido</label>
+                                <input type="text" id="apellido" name="apellido" class="form-control feedback-input" placeholder="Ej: Pérez" required>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-6 mb-3">
+                                <label class="logo-subtitle mb-2 d-block" style="text-align: left; -webkit-text-fill-color: var(--nene-gold);">Fecha de Nacimiento</label>
+                                <input type="date" id="nacimiento" name="nacimiento" class="form-control feedback-input" 
+                                       min="1920-01-01" onkeydown="return false" onclick="this.showPicker()" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="logo-subtitle mb-2 d-block" style="text-align: left; -webkit-text-fill-color: var(--nene-gold);">WhatsApp</label>
+                                <input type="tel" id="whatsapp" name="whatsapp" class="form-control feedback-input" placeholder="Ej: 11 6190 2819" required>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <label class="logo-subtitle mb-2 d-block" style="text-align: left; -webkit-text-fill-color: var(--nene-gold);">Localidad</label>
+                                <select id="localidad" name="localidad" class="form-select feedback-input" required>
+                                    <option value="" disabled selected>Seleccione su localidad</option>
+                                    <optgroup label="Almirante Brown">
+                                        <option value="Rafael Calzada">Rafael Calzada</option>
+                                        <option value="Burzaco">Burzaco</option>
+                                        <option value="Adrogué">Adrogué</option>
+                                        <option value="Claypole">Claypole</option>
+                                        <option value="Longchamps">Longchamps</option>
+                                    </optgroup>
+                                    <optgroup label="Otras Regiones">
+                                        <option value="CABA">Capital Federal (CABA)</option>
+                                        <option value="GBA Sur">Zona Sur GBA</option>
+                                        <option value="Interior/Otro">Interior / Otro</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <hr style="border-color: var(--nene-gold); opacity: 0.1;" class="my-5">
+
+                        <div class="mb-5 text-center">
+                            <span class="rating-label">Excelencia de nuestros cortes y platos</span>
+                            <div class="stars">
+                                <input type="radio" name="platos" id="p5" value="5"><label for="p5"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="platos" id="p4" value="4"><label for="p4"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="platos" id="p3" value="3"><label for="p3"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="platos" id="p2" value="2"><label for="p2"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="platos" id="p1" value="1"><label for="p1"><i class="fas fa-star"></i></label>
+                            </div>
+                        </div>
+
+                        <div class="mb-5 text-center">
+                            <span class="rating-label">Hospitalidad y servicio en mesa</span>
+                            <div class="stars">
+                                <input type="radio" name="atencion" id="a5" value="5"><label for="a5"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="atencion" id="a4" value="4"><label for="a4"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="atencion" id="a3" value="3"><label for="a3"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="atencion" id="a2" value="2"><label for="a2"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="atencion" id="a1" value="1"><label for="a1"><i class="fas fa-star"></i></label>
+                            </div>
+                        </div>
+
+                        <div class="mb-5 text-center">
+                            <span class="rating-label">Clima y atmósfera del salón</span>
+                            <div class="stars">
+                                <input type="radio" name="ambiente" id="am5" value="5"><label for="am5"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="ambiente" id="am4" value="4"><label for="am4"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="ambiente" id="am3" value="3"><label for="am3"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="ambiente" id="am2" value="2"><label for="am2"><i class="fas fa-star"></i></label>
+                                <input type="radio" name="ambiente" id="am1" value="1"><label for="am1"><i class="fas fa-star"></i></label>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="critica" class="logo-subtitle mb-2 d-block" style="text-align: left; -webkit-text-fill-color: var(--nene-gold);">Observaciones de autor (Opcional)</label>
+                            <textarea id="critica" name="critica" class="form-control feedback-input" rows="5" maxlength="500" placeholder="Comparta sus impresiones..." oninput="document.getElementById('word-counter').innerText = this.value.length + ' / 500'"></textarea>
+                            <div id="word-counter" class="text-end mt-2" style="font-size: 0.75rem; color: var(--nene-gold); font-family: 'Poppins', sans-serif;">0 / 500</div>
+                        </div>
+                        
+
+                        <div class="text-center pt-4">
+                            <button type="submit" class="btn-nene-gold w-100 py-3">
+                                Compartir mi opinión
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container copyright-bar text-center py-4">
+            <p class="mb-0">&copy; 2026 PARRILLA NENÉ. TODOS LOS DERECHOS RESERVADOS.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+</html>
