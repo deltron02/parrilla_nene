@@ -451,3 +451,158 @@ footer {
     border: 2px solid var(--nene-error) !important;
     box-shadow: 0 0 10px rgba(255, 77, 77, 0.2) !important;
 }
+
+/* ESTILO PARA SECCION DE LA CARTA*/
+
+.carta-main-title {
+    font-size: 3rem !important;
+    margin-bottom: 0.5rem;
+}
+
+.divider-gold {
+    width: 80px;
+    height: 3px;
+    background: var(--gold-gradient);
+    border-radius: 2px;
+}
+
+.carta-lead {
+    font-size: 1.25rem;
+    color: var(--nene-gold-light);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.carta-description {
+    font-size: 1.1rem;
+    color: var(--text-readable);
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+.carta-mini-list {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid rgba(197, 160, 89, 0.1);
+    height: 100%;
+    transition: 0.3s;
+}
+
+.carta-mini-list:hover {
+    border-color: rgba(197, 160, 89, 0.4);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.custom-bullet-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-readable);
+    font-size: 0.95rem;
+}
+
+.custom-bullet-list li::before {
+    content: '•';
+    color: var(--nene-gold);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* Estilos para la miniatura de la carta */
+.menu-interaction-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.menu-preview-container {
+    max-width: 400px; 
+    margin: 0 auto;
+    cursor: zoom-in;
+    transition: transform 0.3s ease;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.menu-preview-container:hover {
+    transform: scale(1.05);
+}
+
+.menu-overlay-hint {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.menu-overlay-hint i {
+    font-size: 3rem;
+    color: var(--nene-gold);
+}
+
+.menu-preview-container:hover .menu-overlay-hint {
+    opacity: 1;
+}
+
+.menu-thumb {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    border: 2px solid #1a1a1a;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+}
+
+/* Estilos para la imagen expandida) */
+.lightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.98);
+    z-index: 9999;
+    /* Permite el scroll en la imagen */
+    overflow: auto; 
+    /* Alineación inicial */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.lightbox-content {
+    /* Evita que la imagen se comprima por defecto */
+    max-width: 90%; 
+    height: auto;
+    transition: all 0.3s ease-in-out;
+    cursor: zoom-in;
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 20px; right: 30px;
+    color: var(--nene-gold);
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-lightbox:hover { transform: scale(1.2); color: #fff; }
+
+.animate-fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
