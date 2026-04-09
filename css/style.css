@@ -1,0 +1,394 @@
+/*===================================== VARIABLES Y ESTILOS BASE ================================*/
+:root {
+    --bg-deep: #050505;
+    --card-premium: #0a0a0a;
+    --nene-gold: #c5a059;
+    --nene-gold-light: #f1d592;
+    --nene-error: #ff4d4d;
+    --text-white: #ffffff;
+    --text-readable: #d1d1d1;
+    
+    --gold-gradient: linear-gradient(135deg, #a68a4d 0%, #f1d592 50%, #a68a4d 100%);
+    --gold-glow: 0 0 25px rgba(197, 160, 89, 0.25);
+}
+
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-deep);
+    background-image: radial-gradient(#111 1px, transparent 1px);
+    background-size: 20px 20px;
+    color: var(--text-white);
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/*====================================== ESTILO PARA NAVBAR ==============================*/
+.navbar-nene {
+    background-color: rgba(0, 0, 0, 0.98) !important;
+    backdrop-filter: blur(15px);
+    border-bottom: 1px var(--nene-gold) solid;
+    padding: 0px 0px !important;
+}
+
+/* ESTILO PARA LOGO Y SUBTITULO EN LA NAVBAR */
+.logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-img {
+    height: 70px;
+    width: auto;
+    filter: brightness(1.1) drop-shadow(0 4px 10px rgba(0,0,0,0.6));
+}
+
+.logo-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    font-weight: 700;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ESTILO PARA LOS ENLACES DE LA NAVBAR*/
+.nav-link-nene {
+    color: var(--text-white) !important;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 10px 15px !important;
+    transition: 0.3s;
+}
+
+.nav-link-nene:hover {
+    color: var(--nene-gold) !important;
+}
+
+/*=================================== ESTILO PARA CARD BASE ===================================*/
+.card-nene {
+    background-color: var(--card-premium);
+    border: 1px solid #1a1a1a;
+    padding: 5rem 2rem;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+}
+
+.card-nene::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 3px;
+    background: var(--gold-gradient);
+}
+
+/* PANTALLA DE BIENVENIDA */
+.card-welcome {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.4s ease, 
+                border-color 0.4s ease;
+}
+
+.card-welcome:hover {
+    transform: scale(1.03); 
+    box-shadow: 0 30px 60px rgba(0,0,0,0.95), 0 0 40px rgba(197, 160, 89, 0.15);
+    border-color: rgba(197, 160, 89, 0.4);
+}
+
+/* ESTILO PARA EL TÍTULO DE BIENVENIDA */
+.welcome-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 3.5rem;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+    letter-spacing: 10px; 
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+.card-welcome .welcome-quote {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    color: #888; 
+    font-size: 1.1rem;
+}
+
+/* ====================ESTILOS DE BOTON DORADO EN PÁGINA DE BIENVENIDA Y ENCUESTA ================*/
+.btn-nene-gold {
+    background: var(--gold-gradient);
+    color: #000 !important;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 30px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+/* ESTILO CUANDO SE POSA EL MOUSE POR ENCIMA */
+.btn-nene-gold:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--gold-glow), 0 10px 20px rgba(0,0,0,0.4);
+    filter: brightness(1.1);
+}
+
+/* ESTILO CUANDO SE PRESIONA EL BOTÓN */
+.btn-nene-gold:active {
+    transform: translateY(2px) scale(0.98);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    filter: brightness(0.9);
+    transition: all 0.1s ease;
+}
+
+/*======================ESTILOS DEL FOOTER Y ELEMENTOS INTERNOS=================================*/
+footer {
+    background-color: #000;
+    padding: 10px 0;
+    border-top: 1px var(--nene-gold) solid;
+    margin-top: auto;
+    margin-bottom: 0px;
+}
+
+.footer-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--nene-gold);
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* Efecto de brillo en los íconos de redes sociales del footer */
+.footer-social-wrapper .contact-link i {
+    transition: all 0.3s ease;
+}
+
+.footer-social-wrapper .contact-link:hover i {
+    filter: drop-shadow(0 0 8px var(--nene-gold));
+    transform: scale(1.2);
+}
+
+/* animaciones de link de contacto y ubicación*/
+.contact-link {
+    color: var(--text-readable) !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.contact-link:hover {
+    color: var(--nene-gold) !important;
+    transform: translateY(-2px);
+}
+
+.contact-link i {
+    color: var(--nene-gold);
+}
+
+/* Barra de copyright */
+.copyright-bar {
+    padding-top: 15px;
+    color: #444;
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+}
+
+/* SECCIÓN PARA EL BOTÓN FLOTANTE DE WHATSAPP EN LA ESQUINA INFERIOR DERECHA*/
+.btn-whatsapp-fix {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: #fff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    z-index: 5000;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* se asigna la animación del pulso */
+    animation: whatsapp-pulse 2s infinite;
+}
+
+/* Efecto al pasar el mouse */
+.btn-whatsapp-fix:hover {
+    transform: scale(1.1) translateY(-5px);
+    background-color: #20ba5a;
+    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+    animation-play-state: paused; /* detiene el pulso cuando tiene encima el cursor*/
+}
+
+/* Este keyframe es especificamente para que emita el pulso cuando no tiene cursor encima */
+@keyframes whatsapp-pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+/*============================== RESPONSIVE ===================================*/
+/* --- TABLETS Y PANTALLAS MEDIANAS (Menos de 992px) --- */
+@media (max-width: 991px) {
+    .navbar-nene {
+        padding: 8px 0 !important;
+    }
+
+    .logo-img {
+        height: 60px;
+    }
+
+    /* Estilo del menú desplegable de Bootstrap */
+    .navbar-collapse {
+        background: rgba(0, 0, 0, 0.95);
+        margin: 0 -15px; /* Para que ocupe todo el ancho */
+        padding: 20px;
+        border-bottom: 1px solid var(--nene-gold);
+    }
+
+    .nav-link-nene {
+        text-align: center;
+        padding: 12px !important;
+        font-size: 0.8rem;
+    }
+}
+
+/* --- CELULARES ESTÁNDAR (Menos de 768px) --- */
+@media (max-width: 767px) {
+    
+    /* SECCIÓN NAVBAR Y LOGO */
+    .logo-img {
+        height: 50px;
+    }
+    
+    .logo-subtitle {
+        font-size: 0.6rem;
+        letter-spacing: 4px;
+    }
+
+    /* CARD DE BIENVENIDA */
+    .card-nene { 
+        padding: 2.5rem 1.2rem; 
+        margin: 0 5px; 
+    }
+
+    .welcome-title { 
+        font-size: 2rem !important; 
+        letter-spacing: 5px; 
+        margin-bottom: 1rem;
+    }
+
+    .card-welcome .welcome-quote {
+        font-size: 1rem;
+        margin-bottom: 2rem !important;
+    }
+
+    .btn-nene-gold {
+        padding: 10px 25px;
+        font-size: 0.85rem;
+    }
+
+    /* FOOTER*/
+    footer {
+        padding: 25px 0 10px 0;
+    }
+
+    /* Reduce el espacio entre las 3 columnas apiladas */
+    footer .row.g-4 {
+        --bs-gutter-y: 1.8rem; 
+    }
+
+    .footer-title {
+        font-size: 0.75rem; 
+        margin-bottom: 8px;
+    }
+
+    .contact-link {
+        font-size: 0.8rem;
+    }
+
+    .footer-social-wrapper {
+        margin-top: 5px !important;
+        gap: 20px !important;
+    }
+
+    .copyright-bar {
+        font-size: 0.55rem;
+        margin-top: 15px;
+        padding-top: 10px;
+        opacity: 0.7;
+    }
+
+    /* BOTÓN WHATSAPP */
+    .btn-whatsapp-fix {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 1.6rem;
+    }
+}
+
+/* --- CELULARES CHICOS (Menos de 480px) --- */
+@media (max-width: 480px) {
+    .welcome-title { 
+        font-size: 1.6rem !important; 
+        letter-spacing: 3px; 
+    }
+
+    .btn-nene-gold {
+        width: 100%; /* El botón ocupa todo el ancho en móviles pequeños */
+        text-align: center;
+    }
+
+    .card-welcome:hover {
+    /* Evita saltos visuales al tocar en móvil */
+        transform: none;
+    }
+
+    .contact-link {
+        font-size: 0.75rem;
+    }
+}

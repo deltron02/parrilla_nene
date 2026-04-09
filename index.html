@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parrilla Nené - Bienvenidos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+<!-- Barra de navegación con logo y secciones-->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-nene sticky-top">
+        <div class="container">
+            <a class="navbar-brand logo-wrapper" href="index.html">
+                <img src="img/logo_nene.png" alt="Logo Parrilla Nené" class="logo-img">
+                <span class="logo-subtitle">Parrilla</span>
+            </a>
+            
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link nav-link-nene" href="carta.html">Nuestra Carta</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-nene" href="info.html">Ubicación y Horarios</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-nene" href="nosotros.html">Nosotros</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+<!-- Contenido principal (card de bienvenida con redirección a la carta)-->
+    <main class="container flex-grow-1 d-flex align-items-center py-5">
+        <div class="row justify-content-center w-100 m-0">
+            <div class="col-12 col-md-10 col-lg-7">
+                
+                <div class="card-nene card-welcome text-center">
+                    <div class="py-4">
+                        <h1 class="welcome-title mb-4">Bienvenido</h1>
+                        
+                        <p class="welcome-quote mb-5">
+                            Nuestra cocina, abierta para vos. Conocé la carta.
+                        </p>
+                        
+                        <div class="pt-2">
+                            <a href="carta.html" class="btn btn-nene-gold px-5 py-2">
+                                Ver Menú Completo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+<!-- Footer con redes sociales, contacto y dirección-->
+    <footer>
+        <div class="container">
+            <div class="row g-4 justify-content-center">
+                <div class="col-12 col-md-4 text-center">
+                    <h3 class="footer-title">Seguinos</h3>
+                    <div class="footer-social-wrapper d-flex justify-content-center gap-3 mt-3">
+                        <a href="https://instagram.com/parrilla.nene" target="_blank" class="contact-link">
+                            <i class="fab fa-instagram fa-lg"></i>
+                        </a>
+                        <a href="https://facebook.com/ParrillaNene" target="_blank" class="contact-link">
+                            <i class="fab fa-facebook-f fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 text-center">
+                    <h3 class="footer-title">Contacto</h3>
+                        
+                        <p class="contact-item mb-2 justify-content-center">
+                            <a href="https://wa.me/541161902819" target="_blank" class="contact-link">
+                                <i class="fab fa-whatsapp"></i> 11 6190-2819
+                            </a>
+                        </p>
+                </div>
+                <div class="col-12 col-md-4 text-center">
+                    <h3 class="footer-title">Visitanos</h3>
+                    <p class="contact-item mb-0 justify-content-center">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Francisco+Seguí+694,+Adrogué" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        class="contact-link">
+                            <i class="fas fa-map-marker-alt"></i> Francisco Seguí 694, Adrogué
+                        </a>
+                    </p>
+                </div>
+            </div> 
+            <div class="row mt-4">
+                <div class="col-12 text-center copyright-bar">
+                    <p class="mb-0">&copy; 2026 PARRILLA NENÉ. TODOS LOS DERECHOS RESERVADOS.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/541161902819" class="btn-whatsapp-fix" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
