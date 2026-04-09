@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Carta - Parrilla Nené</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-nene sticky-top">
+        <div class="container">
+            <a class="navbar-brand logo-wrapper" href="index.html">
+                <img src="img/logo_nene.png" alt="Logo Parrilla Nené" class="logo-img">
+                <span class="logo-subtitle">Parrilla</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto text-center">
+                    <li class="nav-item"><a class="nav-link nav-link-nene active" href="carta.html">Nuestra Carta</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-nene" href="info.html">Ubicación y Horarios</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-nene" href="nosotros.html">Nosotros</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container flex-grow-1 py-5">
+        <header class="text-center mb-5 animate-fade-in">
+            <h1 class="welcome-title carta-main-title">Nuestra Carta</h1>
+            <div class="divider-gold mx-auto"></div>
+        </header>
+
+        <section class="row g-5 align-items-center justify-content-center">
+            <div class="col-lg-6 order-2 order-lg-1">
+                <div class="pe-lg-4 text-center text-md-start">
+                    <p class="carta-lead mb-4">
+                        Honramos la tradición del asado argentino con cortes seleccionados y un respeto absoluto por el punto justo.
+                    </p>
+                    <p class="carta-description mb-5">
+                        Nuestra especialidad es el <strong>Gran Asado Nené</strong>, un costillar ahumado con quebracho colorado y braseado lentamente por tres horas para lograr esa textura que se deshace al primer corte.
+                    </p>
+                    
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <h3 class="footer-title mb-3"><i class="fas fa-fire me-2"></i> Especialidades</h3>
+                            <ul class="list-unstyled custom-bullet-list">
+                                <li>Pastas artesanales como los <strong>Panzottis de carne braseada</strong>.</li>
+                                <li><strong>Risottos</strong> de osobuco, pollo o de mar.</li>
+                                <li><strong>Big Milas</strong> gigantes ideales para compartir.</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="footer-title mb-3"><i class="fas fa-star me-2"></i> Destacados</h3>
+                            <ul class="list-unstyled custom-bullet-list">
+                                <li>Ensaladas frescas como la <strong>Beshi</strong> con mango y queso azul.</li>
+                                <li><strong>Tomahawk</strong> y cortes tradicionales a la leña.</li>
+                                <li>Postres como el <strong>Volcán de chocolate</strong>.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 d-flex flex-wrap justify-content-center justify-content-md-start gap-3">
+                        <a href="docs/menu_nene_09042026.pdf" download class="btn-nene-gold">
+                            <i class="fas fa-download me-2"></i> Descargar Carta
+                        </a>
+                        <a href="https://wa.me/541161902819" target="_blank" class="btn-nene-gold">
+                            <i class="fas fa-calendar-alt me-2"></i> Realizar Reserva
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5 order-1 order-lg-2 text-center">
+                <div class="menu-interaction-wrapper animate-fade-in">
+                    <p class="text-gold-form mb-4">Tocá la imagen para expandir la carta</p>
+                    <div class="menu-preview-container mx-auto" id="openMenu">
+                        <img src="img/menu_nene.jpg" alt="Miniatura Menú" class="menu-thumb shadow-lg">
+                        <div class="menu-overlay-hint">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="lightbox-overlay" id="lightbox">
+        <span class="close-lightbox" id="closeMenu">&times;</span>
+        <img src="img/menu_nene.jpg" alt="Menú Expandido" class="lightbox-content">
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row g-4 justify-content-center">
+                <div class="col-12 col-md-4 text-center">
+                    <h3 class="footer-title">Seguinos</h3>
+                    <div class="footer-social-wrapper d-flex justify-content-center gap-3 mt-3">
+                        <a href="https://instagram.com/parrilla.nene" target="_blank" class="contact-link"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="https://facebook.com/ParrillaNene" target="_blank" class="contact-link"><i class="fab fa-facebook-f fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 text-center">
+                    <h3 class="footer-title">Contacto</h3>
+                    <a href="https://wa.me/541161902819" target="_blank" class="contact-link">
+                        <i class="fab fa-whatsapp"></i> 11 6190-2819
+                    </a>
+                </div>
+                <div class="col-12 col-md-4 text-center">
+                    <h3 class="footer-title">Visitanos</h3>
+                    <a href="#" target="_blank" class="contact-link">
+                        <i class="fas fa-map-marker-alt"></i> Francisco Seguí 694, Adrogué
+                    </a>
+                </div>
+            </div> 
+            <div class="row mt-1">
+                <div class="col-12 text-center copyright-bar">
+                    <p class="mb-0">© 2026 PARRILLA NENÉ. TODOS LOS DERECHOS RESERVADOS.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/541161902819" class="btn-whatsapp-fix" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <script src="./js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
