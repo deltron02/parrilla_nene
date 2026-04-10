@@ -548,13 +548,30 @@ select.feedback-input:not([value=""]):valid {
 }
 
 /*============================== FOOTER ===================================*/
+/*============================== FOOTER (CORREGIDO) ===================================*/
+/*============================== FOOTER (REPARACIÓN FINAL) ===================================*/
 footer {
     background-color: #000;
-    padding: 3px 0 0 0;
+    padding: 20px 0 0 0;
     border-top: 1px var(--nene-gold) solid;
     margin-top: auto;
+    width: 100%;
+}
+
+/* Forzamos a que las columnas de Bootstrap no tengan alturas raras */
+footer .row {
+    margin: 0;
+    display: flex;
+    align-items: flex-start; /* Alinea los títulos al mismo nivel */
+    justify-content: center;
+}
+
+footer .col-12 {
     display: flex;
     flex-direction: column;
+    align-items: center; /* Centra todo el contenido de la columna */
+    justify-content: flex-start;
+    padding-bottom: 20px;
 }
 
 .footer-title {
@@ -563,20 +580,11 @@ footer {
     font-size: 0.90rem;
     letter-spacing: 2px;
     text-transform: uppercase;
-    margin-bottom: 2px;
-    margin-top: 10px;
+    margin-bottom: 12px !important; /* Espacio fijo bajo el título */
+    width: 100%;
+    text-align: center;
 }
 
-.contact-link {
-    color: var(--text-readable) !important;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    font-size: 0.9rem;
-}
 
 .footer-social-wrapper {
     gap: 20px !important;
@@ -584,16 +592,45 @@ footer {
     justify-content: center;
     align-items: center;
     flex: 1;
-    margin-top: 0 !important;
+}
+
+.contact-link {
+    color: var(--text-readable) !important;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    line-height: 1; /* Evita desfases por altura de línea */
+}
+
+.contact-link i {
+    display: block; /* Asegura que el icono sea el centro del flex */
+}
+
+.contact-link:hover {
+    color: var(--nene-gold) !important;
+    transform: translateY(-5px);
+}
+
+.contact-item {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
 .copyright-bar {
-    padding-top: 0;
-    margin-top: 0;
-    padding-bottom: 3px;
+    width: 100%;
+    background-color: rgba(0,0,0,0.8);
+    padding: 2px 0; 
     color: #444;
-    font-size: 0.55rem;
+    font-size: 0.7rem;
     letter-spacing: 1.5px;
+    text-align: center;
+    line-height: 1;
 }
 
 /*========================= SWEETALERT2 CUSTOMIZADO =========================*/
