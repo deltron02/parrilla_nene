@@ -23,7 +23,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto text-center">
                     <li class="nav-item"><a class="nav-link nav-link-nene active" href="carta.html">Nuestra Carta</a></li>
-                    <li class="nav-item"><a class="nav-link nav-link-nene" href="info.html">Ubicación y Horarios</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-nene" href="ubicacion_horarios.html">Ubicación y Horarios</a></li>
                     <li class="nav-item"><a class="nav-link nav-link-nene" href="nosotros.html">Nosotros</a></li>
                 </ul>
             </div>
@@ -37,8 +37,9 @@
         </header>
 
         <section class="row g-5 align-items-center justify-content-center">
-            <div class="col-lg-6 order-2 order-lg-1">
-                <div class="pe-lg-4 text-center text-md-start">
+            
+            <div class="col-12 col-md-6 col-lg-6 order-2 order-md-1">
+                <div class="pe-md-4 text-center text-md-start">
                     <p class="carta-lead mb-4">
                         Honramos la tradición del asado argentino con cortes seleccionados y un respeto absoluto por el punto justo.
                     </p>
@@ -64,19 +65,10 @@
                             </ul>
                         </div>
                     </div>
-
-                    <div class="mt-5 d-flex flex-wrap justify-content-center justify-content-md-start gap-3">
-                        <a href="docs/menu_nene_09042026.pdf" download class="btn-nene-gold">
-                            <i class="fas fa-download me-2"></i> Descargar Carta
-                        </a>
-                        <a href="https://wa.me/541161902819" target="_blank" class="btn-nene-gold">
-                            <i class="fas fa-calendar-alt me-2"></i> Realizar Reserva
-                        </a>
-                    </div>
                 </div>
             </div>
 
-            <div class="col-lg-5 order-1 order-lg-2 text-center">
+            <div class="col-12 col-md-6 col-lg-5 order-1 order-md-2 text-center">
                 <div class="menu-interaction-wrapper animate-fade-in">
                     <p class="text-gold-form mb-4">Tocá la imagen para expandir la carta</p>
                     <div class="menu-preview-container mx-auto" id="openMenu">
@@ -87,48 +79,72 @@
                     </div>
                 </div>
             </div>
+
         </section>
+
+        <div class="d-flex flex-wrap flex-lg-nowrap align-items-center justify-content-center gap-3 mt-5 pt-3">
+            <a href="docs/menu_nene.pdf" download class="btn-nene-gold">
+                <i class="fas fa-download me-2"></i> Descargar Carta
+            </a>
+            <a href="https://wa.me/541161902819" target="_blank" class="btn-nene-gold">
+                <i class="fas fa-calendar-alt me-3"></i> Realizar Reserva
+            </a>
+            <a href="https://www.rappi.com.ar/restaurantes/222468-parrilla-nene" target="_blank" rel="noopener noreferrer" class="btn-delivery rappi">
+                <i class="fas fa-shopping-bag"></i> Rappi
+            </a>
+            <a href="https://www.pedidosya.com.ar/restaurantes/almirante-brown/parrilla-nene-4e07d094-e570-45d2-ad5a-1d6a672313b3-menu?utm_source=google&utm_medium=cpc&utm_campaign=22085784395&sem_tracker=22085784395&gad_source=1&gad_campaignid=22079630610&gbraid=0AAAAAD2Hl2jzXPhI9qj4if3AUDjzEVj5d" target="_blank" rel="noopener noreferrer" class="btn-delivery pedidosya">
+                <i class="fas fa-shopping-bag"></i> Pedidos Ya
+            </a>
+        </div>
     </main>
 
     <div class="lightbox-overlay" id="lightbox">
-        <span class="close-lightbox" id="closeMenu">&times;</span>
+        <span class="close-lightbox" id="closeMenu">×</span>
         <img src="img/menu_nene.jpg" alt="Menú Expandido" class="lightbox-content">
     </div>
 
     <footer>
-        <div class="container">
-            <div class="row g-4 justify-content-center">
-                <div class="col-12 col-md-4 text-center">
-                    <h3 class="footer-title">Seguinos</h3>
-                    <div class="footer-social-wrapper d-flex justify-content-center gap-3 mt-3">
-                        <a href="https://instagram.com/parrilla.nene" target="_blank" class="contact-link"><i class="fab fa-instagram fa-lg"></i></a>
-                        <a href="https://facebook.com/ParrillaNene" target="_blank" class="contact-link"><i class="fab fa-facebook-f fa-lg"></i></a>
-                    </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-4 text-center">
+                <h3 class="footer-title mb-0">Seguinos</h3>
+                <div class="footer-social-wrapper">
+                    <a href="https://instagram.com/parrilla.nene" target="_blank" class="contact-link">
+                        <i class="fab fa-instagram fa-lg"></i>
+                    </a>
+                    <a href="https://facebook.com/ParrillaNene" target="_blank" class="contact-link">
+                        <i class="fab fa-facebook-f fa-lg"></i>
+                    </a>
                 </div>
-                <div class="col-12 col-md-4 text-center">
-                    <h3 class="footer-title">Contacto</h3>
+            </div>
+            <div class="col-12 col-md-4 text-center">
+                <h3 class="footer-title mb-1">Contacto</h3>
+                <p class="contact-item justify-content-center mb-1">
                     <a href="https://wa.me/541161902819" target="_blank" class="contact-link">
                         <i class="fab fa-whatsapp"></i> 11 6190-2819
                     </a>
-                </div>
-                <div class="col-12 col-md-4 text-center">
-                    <h3 class="footer-title">Visitanos</h3>
-                    <a href="#" target="_blank" class="contact-link">
+                </p>
+            </div>
+            <div class="col-12 col-md-4 text-center">
+                <h3 class="footer-title mb-1">Visitanos</h3>
+                <p class="contact-item justify-content-center mb-1">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Francisco+Seguí+694,+Adrogué" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="contact-link">
                         <i class="fas fa-map-marker-alt"></i> Francisco Seguí 694, Adrogué
                     </a>
-                </div>
-            </div> 
-            <div class="row mt-1">
-                <div class="col-12 text-center copyright-bar">
-                    <p class="mb-0">© 2026 PARRILLA NENÉ. TODOS LOS DERECHOS RESERVADOS.</p>
-                </div>
+                </p>
             </div>
+        </div> 
+        <div class="text-center copyright-bar">
+            <p class="mb-0">© 2026 PARRILLA NENÉ. TODOS LOS DERECHOS RESERVADOS.</p>
         </div>
     </footer>
 
     <a href="https://wa.me/541161902819" class="btn-whatsapp-fix" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
+    
     <script src="./js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
