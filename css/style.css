@@ -659,34 +659,66 @@ footer .col-12 {
 
 /*===================================== RESPONSIVE  =====================================*/
 
+/* TABLETS PANTALLA MEDIANA */
 @media (max-width: 992px) {
-    .welcome-title { font-size: 2.8rem; letter-spacing: auto; }
+    .welcome-title { 
+        font-size: 2.8rem; 
+        letter-spacing: normal; /* Cambiado de 2.8rem (que separaría demasiado las letras) a normal */
+    }
     .card-nene { padding: 3rem 1.5rem; }
     .navbar-nav { padding: 1rem 0; }
-    .nav-link-nene { padding: 12px 0 !important; border-bottom: 1px solid rgba(197, 160, 89, 0.1); }
+    /* Si puedes, quita el !important y usa un selector más específico */
+    .nav-link-nene { 
+        padding: 12px 0 !important; 
+        border-bottom: 1px solid rgba(197, 160, 89, 0.1); 
+    }
 }
 
+/* CELULARES GRANDES/TABLETS */
 @media (max-width: 768px) {
-    .welcome-title { font-size: 2.2rem; letter-spacing: auto; }
+    .welcome-title { 
+        font-size: 2.2rem; 
+        letter-spacing: normal; 
+    }
     .title-card-form { font-size: 1.5rem; letter-spacing: 3px; }
     .section-padding { padding: 30px 15px; }
-    .card-nene { padding: 2.5rem 1rem; border-radius: 15px; }
+    .card-nene { 
+        padding: 2.5rem 1rem; 
+        border-radius: 15px; 
+    }
     .stars label { font-size: 2rem; }
     .rating-label { font-size: 1rem; letter-spacing: 3px; }
-    .btn-nene-gold, .btn-delivery { width: 100%; margin-bottom: 10px; }
-    footer .col-12 { margin-bottom: 25px; min-height: auto !important; }
+    .btn-nene-gold, .btn-delivery { 
+        width: 100%; 
+        margin-bottom: 10px; 
+    }
+    footer .col-12 { 
+        margin-bottom: 25px; 
+        min-height: auto !important; 
+    }
     .gallery-thumb-custom { height: 200px; }
     .map-iframe { min-height: 300px; }
     .equal-height-row { flex-direction: column; }
     .lightbox-content { width: 95%; margin: 20px auto; }
 }
 
+/* CELULARES COMUNES*/
 @media (max-width: 576px) {
-    .btn-whatsapp-fix { width: 50px; height: 50px; bottom: 20px; right: 20px; font-size: 1.5rem; }
+    .btn-whatsapp-fix { 
+        width: 50px; 
+        height: 50px; 
+        bottom: 20px; 
+        right: 20px; 
+        font-size: 1.5rem; 
+    }
 }
 
+/* CELULARES CHICOS */
 @media (max-width: 380px) {
-    .welcome-title { font-size: auto; }
-    .logo-img { height: 55px; }
+    .welcome-title { 
+        font-size: 1.7rem;
+    }
+    .logo-img { height: 50px; }
     .stars label { font-size: 1.6rem; }
+    .rating-label { letter-spacing: 1px; }
 }
