@@ -660,14 +660,14 @@ footer .col-12 {
 /*===================================== RESPONSIVE  =====================================*/
 
 @media (max-width: 992px) {
-    .welcome-title { font-size: 2.8rem; letter-spacing: 4px; }
+    .welcome-title { font-size: 2.8rem; letter-spacing: auto; }
     .card-nene { padding: 3rem 1.5rem; }
     .navbar-nav { padding: 1rem 0; }
     .nav-link-nene { padding: 12px 0 !important; border-bottom: 1px solid rgba(197, 160, 89, 0.1); }
 }
 
 @media (max-width: 768px) {
-    .welcome-title { font-size: 2.2rem; letter-spacing: 3px; }
+    .welcome-title { font-size: 2.2rem; letter-spacing: auto; }
     .title-card-form { font-size: 1.5rem; letter-spacing: 3px; }
     .section-padding { padding: 30px 15px; }
     .card-nene { padding: 2.5rem 1rem; border-radius: 15px; }
@@ -686,7 +686,7 @@ footer .col-12 {
 }
 
 @media (max-width: 380px) {
-    .welcome-title { font-size: 1.8rem; }
+    .welcome-title { font-size: auto; }
     .logo-img { height: 55px; }
     .stars label { font-size: 1.6rem; }
 }
