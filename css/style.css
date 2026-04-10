@@ -138,13 +138,62 @@ body {
     color: #888; 
     font-size: 1.1rem;
 }
+/* ================= SECCION DE CARTA ====================================================== */
+/*===================================== LIGHTBOX =====================================*/
+.lightbox-overlay {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.98);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
 
+.lightbox-overlay.active {
+    display: block !important;
+}
+
+.lightbox-content {
+    display: block;
+    margin: 40px auto; 
+    max-width: 90%;
+    height: auto;
+    border: 2px solid var(--nene-gold);
+    border-radius: 8px;
+    box-shadow: var(--gold-glow);
+    cursor: zoom-in;
+    transition: width 0.3s ease, transform 0.3s ease;
+    transform-origin: center top;
+}
+
+/* Estado cuando tiene zoom */
+.lightbox-content.zoomed {
+    max-width: none;
+    width: 150%; 
+    cursor: zoom-out;
+}
+
+.close-lightbox {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    color: var(--nene-gold);
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10001;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
 /*=================================== SECCION UBICACIÓN Y HORARIOS ===================================*/
 /* CONTENEDOR DE FILA PARA IGUALAR ALTURAS */
 .equal-height-row {
     display: flex;
     flex-wrap: wrap;
-    align-items: stretch; /* Fuerza a las columnas a medir lo mismo */
+    align-items: stretch;
 }
 
 /* AJUSTE DE LA CARD PARA SER SIMÉTRICA */
@@ -153,14 +202,14 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 3rem 2rem !important; /* Padding equilibrado */
+    padding: 3rem 2rem !important; 
     margin: 0;
 }
 
 /* CONTENEDOR DEL MAPA PARA SER SIMÉTRICO */
 .map-wrapper-custom {
     height: 100%;
-    min-height: 100%; /* Asegura que llene la columna */
+    min-height: 100%; 
     border: 1px solid var(--nene-gold);
     border-radius: 20px;
     overflow: hidden;
@@ -171,7 +220,7 @@ body {
 .map-iframe {
     width: 100%;
     height: 100%;
-    min-height: 450px; /* Altura base para que la card también respire */
+    min-height: 450px;
     border: 0;
     filter: grayscale(1) invert(0.9) contrast(1.2);
     display: block;
@@ -245,7 +294,6 @@ body {
 .menu-preview-container {
     max-width: 400px; 
     margin: 0 auto;
-    cursor: zoom-in;
     transition: transform 0.3s ease;
     position: relative;
     border-radius: 20px;
@@ -277,7 +325,7 @@ body {
 }
 
 .menu-thumb {
-    width: 100%;
+    width: 120%;
     height: auto;
     border-radius: 12px;
     border: 2px solid #1a1a1a;

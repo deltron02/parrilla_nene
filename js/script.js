@@ -1,16 +1,11 @@
-/**
- * Gestión de acceso y seguridad para la encuesta
- * Restringe la entrada si no viene desde un QR o si ya fue completada
- */
 const urlParams = new URLSearchParams(window.location.search);
-const isFromQR = urlParams.get('source') === 'nene_qr';
+const isFromQR = urlParams.get('source') === 'kX97vP2qZ5rW3mN';
 
 if (window.location.pathname.includes('encuesta.html')) {
     if (!isFromQR) {
         alert("Acceso restringido. Por favor, escanee el QR para acceder a la encuesta.");
         window.location.replace('index.html');
     }
-    // Evita duplicados en la misma sesión
     if (sessionStorage.getItem('encuestaEnviada') === 'true') {
         window.location.replace('index.html');
     }
@@ -18,72 +13,52 @@ if (window.location.pathname.includes('encuesta.html')) {
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- LÓGICA DEL VISOR DE CARTA (LIGHTBOX) ---
+    // --- LÓGICA DEL VISOR DE CARTA ---
     const lightbox = document.getElementById('lightbox');
     const openBtn = document.getElementById('openMenu');
-    const closeBtn = document.querySelector('.close-lightbox');
+    const closeBtn = document.getElementById('closeMenu');
     const lightboxImg = document.querySelector('.lightbox-content');
 
-    // Estado inicial: oculto
-    if (lightbox) {
-        lightbox.style.display = 'none';
-    }
-
     if (openBtn && lightbox) {
-        // Apertura del visor y bloqueo de scroll en el body
         openBtn.onclick = () => {
-            lightbox.style.display = 'block'; 
-            lightbox.style.overflowY = 'auto';
+            lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
             lightbox.scrollTop = 0;
-            
-            if (closeBtn) {
-                closeBtn.style.position = 'fixed';
-                closeBtn.style.top = '20px';
-                closeBtn.style.right = '30px';
-                closeBtn.style.zIndex = '10001';
-            }
+            // Reset por si quedó con zoom de una vez anterior
+            if (lightboxImg) lightboxImg.classList.remove('zoomed');
         };
 
         const cerrarImagen = () => {
-            lightbox.style.display = 'none';
+            lightbox.classList.remove('active');
             document.body.style.overflow = 'auto';
-            // Reset de zoom al cerrar
-            if (lightboxImg) {
-                lightboxImg.style.width = 'auto';
-                lightboxImg.style.maxWidth = '90%';
-                lightboxImg.style.marginTop = '60px'; 
-                lightboxImg.style.cursor = 'zoom-in';
-            }
+            if (lightboxImg) lightboxImg.classList.remove('zoomed');
         };
 
-        // Zoom interactivo dentro del visor (Click en la imagen)
         if (lightboxImg) {
-            lightboxImg.style.display = 'block';
-            lightboxImg.style.margin = '60px auto'; 
-            lightboxImg.style.transition = 'width 0.3s ease';
-            lightboxImg.style.cursor = 'zoom-in';
-            
             lightboxImg.onclick = (e) => {
-                e.stopPropagation(); // Evita que el click cierre el lightbox
-                const isZoomed = lightboxImg.style.maxWidth === 'none';
-                
-                lightboxImg.style.maxWidth = isZoomed ? '90%' : 'none';
-                lightboxImg.style.width = isZoomed ? 'auto' : '150%';
-                lightboxImg.style.cursor = isZoomed ? 'zoom-in' : 'zoom-out';
+                e.stopPropagation();
+                lightboxImg.classList.toggle('zoomed');
+                // Si quitamos el zoom, volvemos arriba del todo
+                if (!lightboxImg.classList.contains('zoomed')) {
+                    lightbox.scrollTop = 0;
+                }
             };
         }
 
-        // Eventos de cierre (Botón, fondo y tecla Escape)
         if (closeBtn) closeBtn.onclick = cerrarImagen;
-        lightbox.onclick = (e) => { if (e.target === lightbox) cerrarImagen(); };
-        document.addEventListener('keydown', (e) => { if (e.key === "Escape") cerrarImagen(); });
+        
+        lightbox.onclick = (e) => {
+            if (e.target === lightbox) cerrarImagen();
+        };
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") cerrarImagen();
+        });
     }
 
-    // --- GESTIÓN DEL FORMULARIO DE ENCUESTA ---
+    // --- FORMULARIO ---
     const form = document.getElementById('survey-form');
     if (form) {
-        // Identidad visual de la marca
         const neneNegro = '#0a0a0a';
         const neneOro = '#c5a059'; 
         const neneTexto = '#f1d592';
@@ -99,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        // Mixin para alertas rápidas (Toasts)
         const Toast = Swal.mixin({
             ...configuracionNene,
             toast: true,
@@ -123,34 +97,27 @@ document.addEventListener('DOMContentLoaded', () => {
         const nacimiento = document.getElementById('nacimiento');
         const localidad = document.getElementById('localidad');
 
-        // Validación de edad mínima (16 años)
         const fechaActual = new Date();
         const fechaLimite = new Date(fechaActual.getFullYear() - 16, fechaActual.getMonth(), fechaActual.getDate());
         const maxFecha = fechaLimite.toISOString().split('T')[0];
         if (nacimiento) nacimiento.setAttribute('max', maxFecha);
 
-        // Sanitización de inputs en tiempo real
         if (nombre) nombre.oninput = (e) => e.target.value = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '').substring(0, 20);
         if (apellido) apellido.oninput = (e) => e.target.value = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '').substring(0, 20);
         if (whatsapp) whatsapp.oninput = (e) => e.target.value = e.target.value.replace(/\D/g, '').substring(0, 13);
 
-        // Generación de token dinámico basado en tiempo (rotación cada 5 min)
         const generarToken = () => {
             const timeFactor = Math.floor(Date.now() / (1000 * 60 * 5));
             return btoa("nene_secure_" + timeFactor);
         };
 
-        // Envío de datos a Google Apps Script
         form.addEventListener('submit', async (e) => {
             e.preventDefault(); 
-            
-            // Validaciones de negocio
             if (!nombre.value.trim() || !apellido.value.trim()) return manejarError(nombre, "Ingresá nombre y apellido.");
             if (!nacimiento.value || new Date(nacimiento.value) > fechaLimite) return manejarError(nacimiento, "Debes ser mayor de 16 años.");
             if (whatsapp.value.length < 10) return manejarError(whatsapp, "WhatsApp inválido.");
             if (!localidad.value) return manejarError(localidad, "Seleccioná tu localidad.");
 
-            // Validación de categorías con estrellas
             const categorias = ['platos', 'atencion', 'ambiente', 'invitar'];
             let faltanEstrellas = false;
             categorias.forEach(cat => {
@@ -173,7 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 comentario: document.getElementById('critica')?.value.trim() || "Sin observaciones"
             };
 
-            // Loader de espera
             Swal.fire({
                 ...configuracionNene,
                 title: 'Verificando...',
@@ -184,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             try {
-                const SCRIPT_URL = "https://script.google.com/macros/s/TU_SCRIPT_ID/exec";
+                const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyw3zvIC5Tp7i2Oi0oxZdKXcKQ4UOYWQIIIp3s85EfMNW-fqfvhqvuuwHIiSQpLhlQn/exec";
                 await fetch(SCRIPT_URL, { 
                     method: 'POST', 
                     mode: 'no-cors', 
@@ -192,7 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify(datos) 
                 });
 
-                // Feedback visual de éxito
                 if (typeof confetti === 'function') confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
                 
                 Swal.fire({
@@ -211,7 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Limpieza automática de errores al interactuar
         document.querySelectorAll('.feedback-input, #localidad').forEach(input => {
             input.addEventListener('input', () => input.classList.remove('input-error'));
             input.addEventListener('change', () => input.classList.remove('input-error'));
