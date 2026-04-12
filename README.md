@@ -10,7 +10,7 @@ El sitio web tiene como objetivo centralizar la información del restaurante (Me
 ## Visualización del Proyecto
 
 ### Galería de Interfaz
-| ![Inicio](.github/index.png) | ![Carta](.github/nuestra_carta.png) | ![Encuesta](.github/encuesta_1.png) | [Ubicación y Horarios](.github/ubicacion_horario.png) | ![Nosotros](.github/nosotros.png) |
+| [Inicio](.github/index.png) | [Carta](.github/nuestra_carta.png) | [Encuesta](.github/encuesta_1.png) | [Ubicación y Horarios](.github/ubicacion_horario.png) | [Nosotros](.github/nosotros.png) |
 
 
 ---
